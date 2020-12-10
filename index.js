@@ -39,7 +39,7 @@ const contractSource = `payable contract FundRaiser =
       let updatedRequests = state.requests{ [Call.caller][address].raised = request.raised + transferValue }
       put(state{ requests = updatedRequests })
 `;
-let contractAddress = "ct_6TwyqYqwUAJz7zmPadP6SyUcWGKei5cjaXijwP8kBQoAhRdmD";
+let contractAddress = "ct_5Xo4DzsBnuLgkhCP5D8w4A3qxV9zY2oK4LK61hziTtrM36wFa";
 
 // { "requester": "ak_2AFioRXb7ZgsShpt1sfm9mPap4C5eFXgZ5D7FMMCFFMpNijCsz", "reason": "test", "currency": "BTC", "amount": 5, "due_date": 0, "raised": 0 }
 var requestsArray = [
