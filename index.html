@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Pimp my Family</title>
+    <style>
+        .ask-btn {
+            background-color: red;
+            color: white;
+            margin-top: 1em;
+        }
+
+        .fund-btn {
+            background-color: green;
+            color: white;
+            margin-top: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- include latest SDK version -->
+    <script src="https://unpkg.com/@aeternity/aepp-sdk/dist/aepp-sdk.browser-script.js"></script>
+    <!-- script src="https://unpkg.com/@aeternity/aepp-sdk@6.1.2/dist/aepp-sdk.browser-script.js"></script -->
+    <script type="text/javascript">
+        Ae.Node({ url: 'https://testnet.aeternity.io' }).then(node => {
+            Ae.Universal({
+                nodes: [{ name: 'local', instance: node }]
+            }).then(aeInstance => {
+                aeInstance.height().then(height => {
+                    console.log("Current Block Height:" + height)
+                })
+            })
+        })
+    </script>
+    <div class="container">
+        <div class="row">
+            <div class="col-md4 text-center div-center">
+                <div class="title">
+                    <img src="glasses.gif" />
+                    <h1>Pimp My Family</h1>
+                </div>
+                <div>
+                    <form>
+                        <div class="form">
+                            <div class="col"><input id="giver" type="text" class="form-control"
+                                    placeholder="Giver AE address" />
+                            </div>
+                            <div class="col"><input id="reason" type="text" class="form-control" placeholder="Reason" />
+                            </div>
+                            <div class="col"><input id="currency" type="text" class="form-control"
+                                    placeholder="Currency" /></div>
+                            <div class="col"><input id="amount" type="text" class="form-control" placeholder="Amount" />
+                            </div>
+                            <div class="col"><button id="askBtn" class="btn btn-block ask-btn">Ask</button></div>
+                        </div>
+                    </form>
+                </div>
+                <div id="requestsBody"></div>
+            </div>
+        </div>
+    </div>
+
+    <script id="template" type="x-tmpl-mustache">
+        {{#requestsArray}}
+        <div class="card">
+            <div class="card-title">{{reason}} for {{requester}}</div>
+            <div class="card-body">
+                <h4 class="subtitle">{{amount}} {{currency}} ({{raised}} ættos)</h4>
+                <input type="number" class="form-control" placeholder="Amount" id={{requester}}/>
+                <button class="btn btn-block fund-btn" id={{requester}}>FUND</button>
+            </div>
+        </div>
+        {{/requestsArray}}
+    </script>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+    <script src="index.js"></script>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
