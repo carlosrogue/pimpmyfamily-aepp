@@ -100,7 +100,7 @@ $("#askBtn").click(async function () {
     let giver = $("#giver").val();
     let reason = $("#reason").val();
     let currency = $("#currency").val();
-    let amount = $("#amount").val();
+    let amount = parseInt($("#amount").val());
 
     // ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG, test, BTC, 5, 0
     await contractCall('registerFundRequest', [giver, reason, currency, amount, 0], 0);
